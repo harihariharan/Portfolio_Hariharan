@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#070b14" />
+    <meta name="description"
+        content="Hariharan J. — Embedded Systems and Firmware Engineer focused on Embedded C/C++, Embedded Linux, system programming and reliable firmware." />
+    <title>Hariharan J. | Embedded Systems &amp; Firmware Engineer</title>
+    <style>
+        :root {
+            --bg: #070b14;
+            --panel: rgba(17, 25, 42, .72);
+            --text: #edf4ff;
+            --muted: #9aa9c1;
+            --cyan: #5ee7f7;
+            --blue: #7795ff;
+            --line: rgba(148, 177, 224, .17);
+            --glow: rgba(94, 231, 247, .16)
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 88px
+        }
+
+        body {
+            margin: 0;
+            background: radial-gradient(ellipse at 75% 4%, #152443 0, transparent 34%), radial-gradient(ellipse at 0% 45%, #101b30 0, transparent 32%), var(--bg);
+            color: var(--text);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        .wrap {
+            width: min(1120px, calc(100% - 40px));
+            margin: auto
+        }
+
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: rgba(7, 11, 20, .76);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--line)
+        }
+
+        .nav-inner {
+            height: 74px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .brand {
+            font-weight: 800;
+            letter-spacing: -.04em;
+            font-size: 1.12rem
+        }
+
+        .brand span {
+            color: var(--cyan)
+        }
+
+        .links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+            color: var(--muted);
+            font-size: .88rem
+        }
+
+        .links a:hover {
+            color: var(--cyan)
+        }
+
+        .menu {
+            display: none;
+            background: none;
+            border: 1px solid var(--line);
+            color: var(--text);
+            padding: 8px 11px;
+            border-radius: 10px
+        }
+
+        .hero {
+            min-height: calc(100vh - 74px);
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            align-items: center;
+            gap: 44px;
+            padding: 74px 0 84px
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            border: 1px solid rgba(94, 231, 247, .28);
+            background: rgba(94, 231, 247, .07);
+            color: #a7f4ff;
+            border-radius: 99px;
+            padding: 7px 13px;
+            font-size: .78rem;
+            letter-spacing: .08em;
+            text-transform: uppercase
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--cyan);
+            box-shadow: 0 0 14px var(--cyan)
+        }
+
+        h1 {
+            font-size: clamp(3rem, 6.5vw, 5.7rem);
+            line-height: .99;
+            letter-spacing: -.075em;
+            margin: 26px 0 22px;
+            font-weight: 800
+        }
+
+        h1 .gradient {
+            background: linear-gradient(100deg, #fff 0%, #91efff 42%, #8c9fff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--muted);
+            max-width: 600px
+        }
+
+        .actions {
+            display: flex;
+            gap: 13px;
+            flex-wrap: wrap;
+            margin-top: 31px
+        }
+
+        .btn {
+            padding: 12px 18px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: .91rem;
+            border: 1px solid var(--line);
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            transition: .25s
+        }
+
+        .btn.primary {
+            background: linear-gradient(115deg, var(--cyan), #a1b5ff);
+            color: #07101b;
+            border: 0;
+            box-shadow: 0 8px 35px rgba(94, 231, 247, .15)
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(94, 231, 247, .12)
+        }
+
+        .micro {
+            display: flex;
+            gap: 22px;
+            margin-top: 35px;
+            color: var(--muted);
+            font-size: .82rem;
+            flex-wrap: wrap
+        }
+
+        .micro span {
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .micro b {
+            color: var(--text)
+        }
+
+        .visual {
+            height: 440px;
+            position: relative;
+            display: grid;
+            place-items: center;
+            perspective: 1000px
+        }
+
+        .orb {
+            position: absolute;
+            width: 310px;
+            height: 310px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 25%, #8ef4ff 0, #4588b7 12%, #253c78 35%, #10182f 66%, transparent 70%);
+            filter: drop-shadow(0 0 55px rgba(69, 180, 230, .25));
+            animation: float 7s ease-in-out infinite
+        }
+
+        .ring {
+            position: absolute;
+            width: 360px;
+            height: 360px;
+            border: 1px solid rgba(115, 211, 255, .42);
+            border-radius: 50%;
+            transform: rotateX(68deg) rotateZ(-22deg);
+            box-shadow: 0 0 30px rgba(94, 231, 247, .07);
+            animation: spin 18s linear infinite
+        }
+
+        .ring.two {
+            width: 400px;
+            height: 400px;
+            transform: rotateX(72deg) rotateZ(45deg);
+            border-color: rgba(142, 158, 255, .32);
+            animation-duration: 25s;
+            animation-direction: reverse
+        }
+
+        .chip {
+            position: relative;
+            width: 205px;
+            height: 205px;
+            border: 1px solid rgba(176, 236, 255, .65);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(29, 51, 83, .85), rgba(8, 15, 29, .94));
+            box-shadow: inset 0 0 40px rgba(94, 231, 247, .12), 0 30px 80px #02050c;
+            display: grid;
+            place-items: center;
+            transform: rotateY(-18deg) rotateX(10deg);
+            animation: tilt 6s ease-in-out infinite;
+            z-index: 2
+        }
+
+        .chip:before {
+            content: "";
+            position: absolute;
+            inset: 14px;
+            border: 1px solid rgba(94, 231, 247, .22);
+            border-radius: 18px
+        }
+
+        .chip svg {
+            width: 100px;
+            filter: drop-shadow(0 0 13px rgba(94, 231, 247, .5))
+        }
+
+        .float-card {
+            position: absolute;
+            z-index: 3;
+            padding: 11px 14px;
+            background: rgba(12, 21, 38, .84);
+            border: 1px solid var(--line);
+            border-radius: 13px;
+            box-shadow: 0 12px 32px #02050c80;
+            backdrop-filter: blur(12px);
+            font-size: .8rem;
+            color: #c9d8ef
+        }
+
+        .float-card strong {
+            display: block;
+            color: var(--cyan);
+            font-size: .76rem;
+            letter-spacing: .08em;
+            text-transform: uppercase
+        }
+
+        .fc1 {
+            top: 55px;
+            right: 0
+        }
+
+        .fc2 {
+            bottom: 65px;
+            left: 0
+        }
+
+        .fc3 {
+            right: 7px;
+            bottom: 45px
+        }
+
+        .section {
+            padding: 90px 0
+        }
+
+        .section-head {
+            max-width: 650px;
+            margin-bottom: 35px
+        }
+
+        .kicker {
+            font-size: .76rem;
+            text-transform: uppercase;
+            letter-spacing: .16em;
+            color: var(--cyan);
+            font-weight: 800
+        }
+
+        .section h2 {
+            font-size: clamp(2rem, 4vw, 3.1rem);
+            letter-spacing: -.055em;
+            line-height: 1.1;
+            margin: 10px 0 14px
+        }
+
+        .section-head p,
+        .about-copy {
+            color: var(--muted)
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px
+        }
+
+        .card {
+            border: 1px solid var(--line);
+            background: linear-gradient(145deg, rgba(19, 29, 48, .82), rgba(10, 16, 29, .82));
+            border-radius: 19px;
+            padding: 23px;
+            transition: transform .25s, border-color .25s;
+            position: relative;
+            overflow: hidden
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(94, 231, 247, .48)
+        }
+
+        .icon {
+            width: 43px;
+            height: 43px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            background: rgba(94, 231, 247, .09);
+            border: 1px solid rgba(94, 231, 247, .2);
+            color: var(--cyan);
+            font-size: 1.25rem;
+            margin-bottom: 17px
+        }
+
+        .card h3 {
+            margin: 0 0 9px;
+            font-size: 1.08rem
+        }
+
+        .card p {
+            color: var(--muted);
+            font-size: .91rem;
+            margin: 0
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-top: 17px
+        }
+
+        .tag {
+            font-size: .73rem;
+            color: #b9c9e2;
+            border: 1px solid var(--line);
+            padding: 5px 8px;
+            border-radius: 7px;
+            background: rgba(255, 255, 255, .025)
+        }
+
+        .about {
+            display: grid;
+            grid-template-columns: .75fr 1.25fr;
+            gap: 50px;
+            align-items: start
+        }
+
+        .about-panel {
+            padding: 26px;
+            border-radius: 20px;
+            border: 1px solid var(--line);
+            background: linear-gradient(145deg, rgba(19, 29, 48, .8), rgba(10, 16, 29, .7))
+        }
+
+        .about-panel .big {
+            font-size: 3rem;
+            letter-spacing: -.07em;
+            font-weight: 800;
+            color: var(--cyan);
+            line-height: 1
+        }
+
+        .about-panel p {
+            color: var(--muted);
+            font-size: .9rem
+        }
+
+        .skill-groups {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 25px
+        }
+
+        .skill-group {
+            padding: 18px;
+            border: 1px solid var(--line);
+            border-radius: 15px;
+            background: rgba(15, 23, 39, .55)
+        }
+
+        .skill-group h3 {
+            font-size: .94rem;
+            margin: 0 0 12px
+        }
+
+        .skill-group .tags {
+            margin: 0
+        }
+
+        .project-note {
+            font-size: .78rem !important;
+            color: #8e9fb8 !important;
+            margin-top: 15px !important
+        }
+
+        .timeline {
+            border-left: 1px solid rgba(94, 231, 247, .3);
+            margin-left: 8px;
+            padding-left: 25px;
+            display: grid;
+            gap: 22px
+        }
+
+        .timeline-item {
+            position: relative
+        }
+
+        .timeline-item:before {
+            content: "";
+            position: absolute;
+            left: -31px;
+            top: 7px;
+            width: 10px;
+            height: 10px;
+            background: var(--cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 16px rgba(94, 231, 247, .5)
+        }
+
+        .timeline-item h3 {
+            margin: 0 0 5px
+        }
+
+        .timeline-item p {
+            margin: 0;
+            color: var(--muted);
+            font-size: .91rem
+        }
+
+        .contact {
+            border: 1px solid rgba(94, 231, 247, .2);
+            background: radial-gradient(ellipse at 80% 0%, rgba(94, 231, 247, .09), transparent 45%), var(--panel);
+            padding: clamp(25px, 5vw, 48px);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px
+        }
+
+        .contact p {
+            color: var(--muted);
+            max-width: 570px
+        }
+
+        .footer {
+            padding: 30px 0;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: .82rem
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity .7s ease, transform .7s ease
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        .chip {
+            width: 240px !important;
+            height: 240px !important
+        }
+
+        .chip:before {
+            display: none
+        }
+
+        .chip img {
+            position: absolute;
+            inset: 9px;
+            width: calc(100% - 18px);
+            height: calc(100% - 18px);
+            object-fit: cover;
+            object-position: center 20%;
+            border-radius: 20px
+        }
+
+        .btn {
+            cursor: pointer;
+            font-family: inherit;
+            color: var(--text);
+            background: none
+        }
+
+        .btn.primary {
+            color: #07101b;
+            background: linear-gradient(115deg, var(--cyan), #a1b5ff)
+        }
+
+        .footer a:hover {
+            color: var(--cyan)
+        }
+
+        .links-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+
+        [hidden] {
+            display: none !important
+        }
+
+        :root {
+            color-scheme: dark;
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px)
+        }
+
+        @media(max-width:570px) {
+            .chip {
+                width: 180px !important;
+                height: 180px !important
+            }
+        }
+
+        .timeline-item h3 a:hover {
+            color: var(--cyan)
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1)
+            }
+
+            50% {
+                transform: translateY(-13px) scale(1.025)
+            }
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotateX(68deg) rotateZ(338deg)
+            }
+        }
+
+        @keyframes tilt {
+
+            0%,
+            100% {
+                transform: rotateY(-18deg) rotateX(10deg) translateY(0)
+            }
+
+            50% {
+                transform: rotateY(-9deg) rotateX(4deg) translateY(-8px)
+            }
+        }
+
+        @media(max-width:850px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding-top: 65px
+            }
+
+            .visual {
+                height: 380px;
+                grid-row: 1
+            }
+
+            .hero-copy {
+                grid-row: 2
+            }
+
+            .grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+                gap: 25px
+            }
+
+            .contact {
+                align-items: flex-start;
+                flex-direction: column
+            }
+
+            .links {
+                gap: 13px;
+                font-size: .8rem
+            }
+        }
+
+        @media(max-width:570px) {
+            .wrap {
+                width: min(100% - 30px, 1120px)
+            }
+
+            .nav-inner {
+                height: 65px
+            }
+
+            .links {
+                display: none;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                right: 0;
+                background: #0a1020;
+                padding: 18px 22px;
+                border-bottom: 1px solid var(--line);
+                flex-direction: column;
+                align-items: flex-start
+            }
+
+            .links.open {
+                display: flex
+            }
+
+            .menu {
+                display: block
+            }
+
+            .hero {
+                padding: 35px 0 60px;
+                gap: 5px;
+                min-height: auto
+            }
+
+            .visual {
+                height: 315px
+            }
+
+            .orb {
+                width: 230px;
+                height: 230px
+            }
+
+            .ring {
+                width: 280px;
+                height: 280px
+            }
+
+            .ring.two {
+                width: 310px;
+                height: 310px
+            }
+
+            .chip {
+                width: 155px;
+                height: 155px;
+                border-radius: 23px
+            }
+
+            .chip svg {
+                width: 75px
+            }
+
+            .fc1 {
+                top: 20px;
+                right: 0
+            }
+
+            .fc2 {
+                bottom: 30px;
+                left: 0
+            }
+
+            .fc3 {
+                right: 0;
+                bottom: 20px
+            }
+
+            .float-card {
+                font-size: .7rem;
+                padding: 8px 10px
+            }
+
+            h1 {
+                font-size: clamp(3rem, 14vw, 4.5rem)
+            }
+
+            .hero p {
+                font-size: 1rem
+            }
+
+            .section {
+                padding: 65px 0
+            }
+
+            .grid {
+                grid-template-columns: 1fr
+            }
+
+            .skill-groups {
+                grid-template-columns: 1fr
+            }
+
+            .micro {
+                gap: 12px
+            }
+
+            .micro span {
+                font-size: .77rem
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+
+            *,
+            *:before,
+            *:after {
+                animation: none !important;
+                scroll-behavior: auto !important;
+                transition: none !important
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="nav">
+        <div class="wrap nav-inner"><a class="brand" href="#home">HJ<span>.</span></a>
+            <nav class="links" id="navlinks"><a href="#about">About</a><a href="#skills">Skills</a><a
+                    href="#embedded">Engineering</a><a href="#projects">Projects</a><a href="#journey">Experience</a><a
+                    href="#recognition">Recognition</a><a href="#publications">Publications</a><a
+                    href="#contact">Contact</a></nav><button class="menu" id="menu"
+                aria-label="Toggle navigation">☰</button>
+        </div>
+    </header>
+    <main>
+        <section class="wrap hero" id="home">
+            <div class="hero-copy">
+                <div class="eyebrow"><span class="dot"></span> Embedded systems · Firmware · Linux</div>
+                <h1>Hi, I'm<br><span class="gradient">Hariharan J.</span></h1>
+                <p>I'm an Embedded Systems and Firmware Engineer focused on Embedded C/C++, Embedded Linux, system
+                    programming, hardware–software integration, and networked embedded devices. I enjoy debugging
+                    complex system-level issues, developing efficient firmware, and understanding how software interacts
+                    with hardware.</p>
+                <div class="tags"><span class="tag">C/C++</span><span class="tag">Embedded Linux</span><span
+                        class="tag">System Programming</span><span class="tag">Networking</span></div>
+                <div class="actions"><a class="btn primary" href="#projects">Explore my work <span>↗</span></a><a
+                        class="btn" href="#contact">Let's connect <span>→</span></a><a class="btn"
+                        href="./assets/Hariharan_J_resume.pdf" target="_blank" rel="noopener" download>Download resume
+                        <span>↓</span></a></div>
+                <div class="micro"><span>⌁ <b>2+ years</b> experience</span><span>⌖ <b>India</b></span><span>⚙
+                        <b>Embedded Linux</b></span></div>
+            </div>
+            <div class="visual">
+                <div class="orb"></div>
+                <div class="ring"></div>
+                <div class="ring two"></div>
+                <div class="chip"><img src="./assets/profile.jpg" alt="Portrait of Hariharan J"></div>
+                <div class="float-card fc1"><strong>Firmware</strong> Close to the hardware</div>
+                <div class="float-card fc2"><strong>Connectivity</strong> Protocols & streaming</div>
+                <div class="float-card fc3"><strong>Linux</strong> Build · Debug · Optimize</div>
+            </div>
+        </section>
+        <section class="section" id="about">
+            <div class="wrap about">
+                <div class="about-panel reveal">
+                    <div class="kicker">A little about me</div>
+                    <div class="big">Build.<br>Debug.<br>Improve.</div>
+                    <p>I enjoy turning complex system-level problems into reliable, maintainable embedded solutions.</p>
+                </div>
+                <div class="reveal">
+                    <div class="kicker">About me</div>
+                    <h2>Engineering where software meets hardware.</h2>
+                    <p class="about-copy">I'm Hariharan J., an Embedded Systems and Firmware Engineer with a background
+                        in Electrical and Electronics Engineering and hands-on experience developing and debugging
+                        embedded software.</p>
+                    <p class="about-copy">My technical interests include Embedded C/C++, Embedded Linux, Linux system
+                        programming, device drivers, communication protocols, real-time systems, and hardware–software
+                        integration. I enjoy investigating low-level issues, analyzing system behavior, optimizing
+                        resource-constrained applications, and building reliable firmware.</p>
+                    <p class="about-copy">I'm continuously strengthening my understanding of Linux internals, kernel
+                        development, networking, and RTOS concepts while working toward designing robust, efficient, and
+                        maintainable embedded systems.</p>
+                    <div class="tags"><span class="tag">Problem solving</span><span class="tag">System
+                            debugging</span><span class="tag">Cross-functional collaboration</span><span
+                            class="tag">Continuous learning</span></div>
+                </div>
+            </div>
+        </section>
+        <section class="section" id="skills">
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <div class="kicker">Technical toolkit</div>
+                    <h2>Tools I use to make things work.</h2>
+                    <p>A cross-layer skill set for firmware development, Linux-based systems, hardware–software integration and networking.</p>
+                </div>
+                <div class="skill-groups reveal">
+                    <div class="skill-group">
+                        <h3>Programming & scripting</h3>
+                        <div class="tags"><span class="tag">C</span><span class="tag">C++</span><span
+                                class="tag">Python</span><span class="tag">Bash</span></div>
+                    </div>
+                    <div class="skill-group">
+                        <h3>Embedded Systems</h3>
+                        <div class="tags"><span class="tag">Microcontrollers</span><span class="tag">firmware
+                                development</span><span class="tag">hardware–software integration</span><span
+                                class="tag">ARM / RISC-V architectures</span><span class="tag">Linux kernel
+                                drivers</span></div>
+                    </div>
+                    <div class="skill-group">
+                        <h3>Embedded Linux</h3>
+                        <div class="tags"><span class="tag">Buildroot</span><span
+                                class="tag">Cross-compilation</span><span class="tag">Linux debugging</span><span
+                                class="tag">system integration</span><span class="tag">kernel modules</span><span
+                                class="tag">device drivers</span></div>
+                    </div>
+                    <div class="skill-group">
+                        <h3>Networking and communication</h3>
+                        <div class="tags"><span class="tag">TCP/IP</span><span class="tag">UDP</span><span
+                                class="tag">Socket programming</span><span class="tag">IPv4/IPv6</span><span class="tag">DHCP</span><span class="tag">MQTT</span></div>
+                    </div>
+                    <div class="skill-group">
+                        <h3>Debugging and system engineering</h3>
+                        <div class="tags"><span class="tag">GDB</span><span class="tag">Linux Logs</span><span
+                                class="tag">Memory analysis</span><span class="tag">Performance debugging</span><span class="tag">Concurrency and IPC</span></div>
+                    </div>
+                    <div class="skill-group">
+                        <h3>Firmware reliability and security</h3>
+                        <div class="tags"><span class="tag">Firmware signing</span><span class="tag">secure update workflows</span><span
+                                class="tag">SBOM analysis</span><span class="tag">vulnerability assessment</span></div>
+                    </div>
+                    <div class="skill-group">
+                        <h3>Exploring</h3>
+                        <div class="tags"><span class="tag">Linux drivers</span><span class="tag">FreeRTOS</span><span
+                                class="tag">ONNX / YOLO</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section" id="embedded">
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <div class="kicker">Embedded engineering</div>
+                    <h2>From low-level software to system integration.</h2>
+                    <p>Core areas of embedded engineering, including platform integration, firmware development, system reliability and communication.</p>
+                </div>
+                <div class="grid">
+                    <article class="card reveal">
+                        <div class="icon">⌘</div>
+                        <h3>Linux System Debugging</h3>
+                        <p>Investigating memory usage, buffer allocation, process behavior and reliability issues on resource-constrained embedded Linux platforms.</p>
+                        <div class="tags"><span class="tag">Embedded Linux</span><span class="tag">Memory analysis</span><span class="tag">Debugging</span></div>
+                    </article>
+                    <article class="card reveal">
+                        <div class="icon">⚙</div>
+                        <h3>Firmware Development</h3>
+                        <p>Developing and integrating embedded C/C++ components, configuration handling and system-level features for production firmware.</p>
+                        <div class="tags"><span class="tag">C/C++</span><span class="tag">Firmware</span><span class="tag">System integration</span></div>
+                    </article>
+                    <article class="card reveal">
+                        <div class="icon">▤</div>
+                        <h3>Embedded Linux Platforms</h3>
+                        <p>Working with cross-compilation, Buildroot-based systems, platform configuration and firmware deployment on embedded targets.</p>
+                        <div class="tags"><span class="tag">Buildroot</span><span class="tag">Cross-compilation</span><span class="tag">ARM / RISC-V</span></div>
+                    </article>
+                    <article class="card reveal">
+                        <div class="icon">⇄</div>
+                        <h3>Networking & Communication</h3>
+                        <p>Integrating network protocols and communication interfaces, and debugging data transport, timing and interoperability issues.</p>
+                        <div class="tags"><span class="tag">TCP/IP</span><span class="tag">UDP</span><span class="tag">Socket programming</span></div>
+                    </article>
+                    <article class="card reveal">
+                        <div class="icon">◷</div>
+                        <h3>Real-Time Data Processing</h3>
+                        <p>Working with streaming pipelines, timestamping, synchronization and resource-aware processing on embedded systems.</p>
+                        <div class="tags"><span class="tag">GStreamer</span><span class="tag">RTP</span><span class="tag">PTP</span></div>
+                    </article>
+                    <article class="card reveal">
+                        <div class="icon">⌥</div>
+                        <h3>Firmware Reliability & Security</h3>
+                        <p>Analyzing firmware package vulnerabilities, reviewing SBOM findings and exploring signed firmware-update workflows.</p>
+                        <div class="tags"><span class="tag">SBOM</span><span class="tag">CVE review</span><span class="tag">Firmware signing</span></div>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <section class="section" id="projects">
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <div class="kicker">Selected work</div>
+                    <h2>Projects, problems & engineering.</h2>
+                    <p>A selection of project areas that reflect my work and learning. Detailed case studies can be
+                        added as project descriptions and approved visuals become available.</p>
+                </div>
+                <div class="grid">
+                    <article class="card reveal">
+                        <div class="icon">▣</div>
+                        <h3>Embedded Firmware Integration</h3>
+                        <p>Integration of embedded firmware components, device-control interfaces, communication protocols and system workflows.</p>
+                        <div class="tags"><span class="tag">C/C++</span><span class="tag">Linux</span><span class="tag">Protocol integration</span></div>
+                    </article>
+                    <article class="card reveal">
+                        <div class="icon">⌘</div>
+                        <h3>Linux System Debugging</h3>
+                        <p>Investigating memory use, buffer allocation, process behavior and reliability issues on
+                            constrained embedded platforms.</p>
+                        <div class="tags"><span class="tag">Linux</span><span class="tag">V4L2</span><span
+                                class="tag">GDB</span></div>
+                    </article>
+                    <article class="card reveal">
+                        <div class="icon">⇄</div>
+                        <h3>Real-Time Data & Streaming</h3>
+                        <p>Working with real-time data pipelines, transport latency, timestamping and synchronization across connected embedded systems.</p>
+                        <div class="tags"><span class="tag">GStreamer</span><span class="tag">RTP</span><span
+                                class="tag">PTP</span></div>
+                    </article>
+                    <article class="card reveal">
+                        <div class="icon">◉</div>
+                        <h3>Edge AI Inference</h3>
+                        <p>Experimented with YOLOv5 ONNX model inference and evaluated person-detection output using Python-based tooling.</p>
+                        <div class="tags"><span class="tag">Python</span><span class="tag">ONNX</span><span
+                                class="tag">Computer vision</span></div>
+                    </article>
+                    <article class="card reveal">
+                        <div class="icon">⌁</div>
+                        <h3>Firmware Security & SBOM</h3>
+                        <p>Investigated software bill of materials findings and embedded Linux package vulnerabilities,
+                            including update planning.</p>
+                        <div class="tags"><span class="tag">Buildroot</span><span class="tag">Grype</span><span
+                                class="tag">CVE review</span></div>
+                    </article>
+                    <article class="card reveal">
+                        <div class="icon">ϟ</div>
+                        <h3>Embedded Hardware & Innovation</h3>
+                        <p>Academic engineering work spanning a lithium-ion battery balancing converter, energy
+                            harvesting and robotics.</p>
+                        <div class="tags"><span class="tag">Electronics</span><span class="tag">Control
+                                systems</span><span class="tag">Robotics</span></div>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <section class="section" id="journey">
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <div class="kicker">Experience</div>
+                    <h2>Always learning. Always building.</h2>
+                </div>
+                <div class="timeline reveal">
+                    <div class="timeline-item">
+                        <h3>Product Engineer · e-con Systems India Pvt. Ltd.</h3>
+                        <p>Chennai · August 2024–Present. Developing and debugging production embedded firmware in C/C++; integrating communication protocols and system components; working with Embedded Linux, multimedia and networking stacks; investigating resource, reliability and performance issues; and supporting firmware update and security workflows.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>B.E. Electrical and Electronics Engineering</h3>
+                        <p>Kumaraguru College of Technology, Coimbatore · 2020–2024 · CGPA 9.49.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section" id="recognition">
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <div class="kicker">Recognition</div>
+                    <h2>Awards &amp; achievements.</h2>
+                </div>
+                <div class="timeline reveal">
+                    <div class="timeline-item">
+                        <h3>Creative Engineer 2026</h3>
+                        <p>e-con Systems India Pvt. Ltd. · 2026</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Extra Mile Award</h3>
+                        <p>e-con Systems India Pvt. Ltd. · 2025</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Best Outgoing Student Award</h3>
+                        <p>Department of Electrical and Electronics Engineering, Kumaraguru College of Technology · 2024
+                        </p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Runner-up, Fit.Kovai Hackathon</h3>
+                        <p>Bosch Global Software Technologies · 2023</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Mahatma Gandhi Merit Scholarship</h3>
+                        <p>Awarded four consecutive years for academic excellence · 2021–2024</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section" id="publications">
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <div class="kicker">Publications</div>
+                    <h2>Research I've published.</h2>
+                </div>
+                <div class="timeline reveal">
+                    <div class="timeline-item">
+                        <h3><a href="https://ieeexplore.ieee.org/document/10533968" target="_blank"
+                                rel="noopener">Revolutionizing the battery performance by an innovative approach to
+                                balance the cells ↗</a></h3>
+                        <p>April 2024 · IEEE Xplore</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3><a href="https://ieeexplore.ieee.org/document/10199629" target="_blank" rel="noopener">A
+                                Novel Bi-Directional Converter for low voltage motor drives in electric Vehicles ↗</a>
+                        </h3>
+                        <p>April 2023 · IEEE Xplore</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3><a href="https://ieeexplore.ieee.org/document/10090963" target="_blank"
+                                rel="noopener">Biomechanically Sourced Hybrid Energy Harvester - Towards A Sustainable
+                                Environment ↗</a></h3>
+                        <p>January 2023 · IEEE Xplore</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section" id="contact">
+            <div class="wrap">
+                <div class="contact reveal">
+                    <div>
+                        <div class="kicker">Have an opportunity?</div>
+                        <h2>Let's build something reliable.</h2>
+                        <p>I'm open to connecting about embedded firmware, Linux systems, device drivers, networking and
+                            embedded systems, firmware development, Linux systems and device-driver opportunities.</p>
+                    </div>
+                    <div class="links-row"><a class="btn primary"
+                            href="mailto:harijanakiraman12@gmail.com?subject=Embedded%20Engineering%20Opportunity">Email
+                            me ↗</a><a class="btn" href="https://www.linkedin.com/in/hari-haran-J" target="_blank"
+                            rel="noopener">LinkedIn ↗</a><a class="btn" href="https://github.com/harihariharan"
+                            target="_blank" rel="noopener">GitHub ↗</a><a class="btn"
+                            href="./assets/Hariharan_J_resume.pdf" target="_blank" rel="noopener" download>Resume ↓</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="wrap footer-inner"><span>© <span id="year"></span> Hariharan J. Built with curiosity and
+                care.</span><span><a href="https://www.linkedin.com/in/hari-haran-J" target="_blank"
+                    rel="noopener">LinkedIn</a> · <a href="https://github.com/harihariharan" target="_blank"
+                    rel="noopener">GitHub</a> · <a href="mailto:harijanakiraman12@gmail.com">Email</a></span></div>
+    </footer>
+    <script>
+        const menu = document.getElementById('menu'),
+            links = document.getElementById('navlinks');
+        menu.addEventListener('click', () => links.classList.toggle('open'));
+        links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+        document.getElementById('year').textContent = new Date().getFullYear();
+        const observer = new IntersectionObserver(entries => entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('visible');
+                observer.unobserve(e.target)
+            }
+        }), {
+            threshold: .12
+        });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>
